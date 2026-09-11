@@ -22,7 +22,7 @@ export const sendEmail = async (req: Request, res: Response): Promise<void> => {
     }
 
     const { text, html, subject } = sendEmailTemplate(name, email, message);
-    const resEmail = await sendEmailService({ to: email, subject, html, text });
+    const resEmail = await sendEmailService({ subject, html, text });
 
     res.status(200).json({
       message: "Message sent successfully",
