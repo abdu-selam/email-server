@@ -2,9 +2,18 @@ import { config } from "dotenv";
 
 config();
 
-const ENV: Record<string, string | Array<string> | undefined> = {
+type Env = {
+  PORT: string | undefined;
+  CLIENTS: Array<string>;
+  EMAIL_PASSWORD: string | undefined;
+  EMAIL_USER: string | undefined;
+};
+
+const ENV: Env = {
   PORT: process.env.PORT,
   CLIENTS: JSON.parse(process.env.CLIENTS || "[]"),
+  EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
+  EMAIL_USER: process.env.EMAIL_USER,
 };
 
 export default ENV;
