@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "tsx watch ./server.ts",
-    "start": "node ./server.js",
+    "start": "node ./dist/server.js",
+    "prestart": "npm run build",
     "build": "tsc"
   },
   "keywords": [],

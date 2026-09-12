@@ -1,5 +1,3 @@
-const { CLIENT_URL } = require("./env");
-
 type TemplateType = {
   text: string;
   html: string;
@@ -20,7 +18,7 @@ export const sendEmailTemplate = (
 
   const html = htmlEmailCreator(name, email, message);
 
-  const subject = "Email Verification Mail";
+  const subject = "Email Send From Client";
 
   return {
     text,
@@ -94,8 +92,8 @@ const htmlEmailCreator = (
 
             <tr>
               <td style="padding: 30px; color: #333333">
-                <h3 style="margin-top: 0; line-height: 1">From ${name},</h3>
-                <h3 style="margin-top: 0; line-height: 1">Email ${email},</h3>
+                <h3 style="margin-top: 0; line-height: 1">From: ${name},</h3>
+                <h3 style="margin-top: 0; line-height: 1">Email: ${email},</h3>
 
                 <hr />
                 <h3>Message</h3>
