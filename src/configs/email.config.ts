@@ -1,14 +1,9 @@
-import nodemailer from "nodemailer";
 import ENV from "../utils/env";
+import SibApiV3Sdk from "sib-api-v3-sdk"
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: ENV.EMAIL_USER,
-    pass: ENV.EMAIL_PASSWORD,
-  },
-});
+const client = SibApiV3Sdk.ApiClient.instance;
+client.authentications["api-key"].apiKey = ENV.SMTP_KEY;
+
+const transporter = new SibApiV3Sdk.TransactionalEmailsApi();
 
 export default transporter;

@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { isEmail } from "../utils/validation";
-import { sendEmailTemplate } from "../utils/templates";
 import { sendEmailService } from "../services/email.service";
+import { sendEmailTemplate } from "../utils/templates";
 
 export const sendEmail = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -21,12 +21,18 @@ export const sendEmail = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const { text, html, subject } = sendEmailTemplate(name, email, message);
-    const resEmail = await sendEmailService({ subject, html, text });
+    const {subject, html} = sendEmailTemplate(name, email, message)
+    const resEmail = await sendEmailService({ subject, html });
 
-    res.status(200).json({
-      message: "Message sent successfully",
-    });
+    if (resEmail) {
+      res.status(200).json({
+        message: "Message sent successfully",
+      });
+    } else {
+      res.status(400).json({
+        error: "Invalid Request",
+      });
+    }
   } catch (error) {
     console.log("Error on the sendEmail controller:", error);
     res.status(500).json({

@@ -5,17 +5,21 @@ config();
 type Env = {
   PORT: string | undefined;
   CLIENTS: Array<string>;
-  EMAIL_PASSWORD: string | undefined;
-  EMAIL_USER: string | undefined;
+
   ADMIN_EMAIL: string | undefined;
+  BREVO_SENDER_EMAIL: string | undefined;
+  BREVO_SENDER_NAME: string | undefined;
+  SMTP_KEY: string | undefined;
 };
 
 const ENV: Env = {
   PORT: process.env.PORT,
   CLIENTS: JSON.parse(process.env.CLIENTS || "[]"),
-  EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
-  EMAIL_USER: process.env.EMAIL_USER,
+
   ADMIN_EMAIL: process.env.ADMIN_EMAIL,
+  BREVO_SENDER_EMAIL: process.env.BREVO_SENDER_EMAIL,
+  BREVO_SENDER_NAME: process.env.BREVO_SENDER_NAME,
+  SMTP_KEY: process.env.SMTP_KEY,
 };
 
 export default ENV;
