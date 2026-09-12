@@ -12,5 +12,10 @@ app.use(
 );
 
 app.use("/email", emailRoute);
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: `Ok at ${Date.now()}`,
+  });
+});
 
 export default app;
